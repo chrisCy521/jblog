@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>单例模式的定义 | jason的博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="shortcut icon" href="/jblog/favicon.ico" type="iamge/x-icon">
+    <meta name="description" content="记录前端的点滴">
+    <meta name="keywords" content="自强不息">
+    <link rel="preload" href="/jblog/assets/css/0.styles.4827cb9a.css" as="style"><link rel="preload" href="/jblog/assets/js/app.939b6301.js" as="script"><link rel="preload" href="/jblog/assets/js/2.69116606.js" as="script"><link rel="preload" href="/jblog/assets/js/29.fc61ae81.js" as="script"><link rel="prefetch" href="/jblog/assets/js/10.3f5ea1a5.js"><link rel="prefetch" href="/jblog/assets/js/11.09868c95.js"><link rel="prefetch" href="/jblog/assets/js/12.5876c8c3.js"><link rel="prefetch" href="/jblog/assets/js/13.70c12460.js"><link rel="prefetch" href="/jblog/assets/js/14.38eaa25e.js"><link rel="prefetch" href="/jblog/assets/js/15.a258f64c.js"><link rel="prefetch" href="/jblog/assets/js/16.d3b6d5b2.js"><link rel="prefetch" href="/jblog/assets/js/17.214d98f4.js"><link rel="prefetch" href="/jblog/assets/js/18.4432f15d.js"><link rel="prefetch" href="/jblog/assets/js/19.009c42d1.js"><link rel="prefetch" href="/jblog/assets/js/20.505677be.js"><link rel="prefetch" href="/jblog/assets/js/21.dc8ee34a.js"><link rel="prefetch" href="/jblog/assets/js/22.24be2b92.js"><link rel="prefetch" href="/jblog/assets/js/23.7b7bfba7.js"><link rel="prefetch" href="/jblog/assets/js/24.291439ff.js"><link rel="prefetch" href="/jblog/assets/js/25.0290b8a6.js"><link rel="prefetch" href="/jblog/assets/js/26.7cdf10c5.js"><link rel="prefetch" href="/jblog/assets/js/27.445ed46d.js"><link rel="prefetch" href="/jblog/assets/js/28.fc9a9daa.js"><link rel="prefetch" href="/jblog/assets/js/3.e2872c24.js"><link rel="prefetch" href="/jblog/assets/js/30.8ad3d737.js"><link rel="prefetch" href="/jblog/assets/js/31.7991df49.js"><link rel="prefetch" href="/jblog/assets/js/32.d679adb5.js"><link rel="prefetch" href="/jblog/assets/js/33.3666d709.js"><link rel="prefetch" href="/jblog/assets/js/34.3fcac35d.js"><link rel="prefetch" href="/jblog/assets/js/35.1a9fb7e3.js"><link rel="prefetch" href="/jblog/assets/js/36.ab850b55.js"><link rel="prefetch" href="/jblog/assets/js/37.b78e16ac.js"><link rel="prefetch" href="/jblog/assets/js/38.eec7df57.js"><link rel="prefetch" href="/jblog/assets/js/39.601d738a.js"><link rel="prefetch" href="/jblog/assets/js/4.17c414fe.js"><link rel="prefetch" href="/jblog/assets/js/40.15e2e330.js"><link rel="prefetch" href="/jblog/assets/js/41.f2985f23.js"><link rel="prefetch" href="/jblog/assets/js/42.bc076e96.js"><link rel="prefetch" href="/jblog/assets/js/43.dd0d1756.js"><link rel="prefetch" href="/jblog/assets/js/44.b7340480.js"><link rel="prefetch" href="/jblog/assets/js/45.04939410.js"><link rel="prefetch" href="/jblog/assets/js/46.11d1f0cf.js"><link rel="prefetch" href="/jblog/assets/js/47.43f1c539.js"><link rel="prefetch" href="/jblog/assets/js/48.2b3a1224.js"><link rel="prefetch" href="/jblog/assets/js/49.c4a6f617.js"><link rel="prefetch" href="/jblog/assets/js/5.c9e8a6e8.js"><link rel="prefetch" href="/jblog/assets/js/50.40173b30.js"><link rel="prefetch" href="/jblog/assets/js/51.0a5b5a95.js"><link rel="prefetch" href="/jblog/assets/js/52.db4eab73.js"><link rel="prefetch" href="/jblog/assets/js/53.c5fa1fb8.js"><link rel="prefetch" href="/jblog/assets/js/54.3585270e.js"><link rel="prefetch" href="/jblog/assets/js/55.90653a0d.js"><link rel="prefetch" href="/jblog/assets/js/56.3dee1469.js"><link rel="prefetch" href="/jblog/assets/js/57.76e8faae.js"><link rel="prefetch" href="/jblog/assets/js/58.ba0fe16f.js"><link rel="prefetch" href="/jblog/assets/js/59.d52f2979.js"><link rel="prefetch" href="/jblog/assets/js/6.0eccc16f.js"><link rel="prefetch" href="/jblog/assets/js/60.323a300e.js"><link rel="prefetch" href="/jblog/assets/js/61.8b53b7c9.js"><link rel="prefetch" href="/jblog/assets/js/62.44f3e031.js"><link rel="prefetch" href="/jblog/assets/js/63.d6ccfebf.js"><link rel="prefetch" href="/jblog/assets/js/7.3e672cdc.js"><link rel="prefetch" href="/jblog/assets/js/8.27e2092a.js"><link rel="prefetch" href="/jblog/assets/js/9.9a99da76.js">
+    <link rel="stylesheet" href="/jblog/assets/css/0.styles.4827cb9a.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/jblog/" class="home-link router-link-active"><!----> <span class="site-name">jason的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/jblog/" class="nav-link">主页</a></div><div class="nav-item"><a href="/jblog/webframe/" class="nav-link router-link-active">前端</a></div><div class="nav-item"><a href="/jblog/publicClass/" class="nav-link">公开课</a></div><div class="nav-item"><a href="/jblog/adv/" class="nav-link">广告技巧</a></div><div class="nav-item"><a href="/jblog/company/" class="nav-link">x</a></div> <a href="https://github.com/chrisCy521/jblog" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/jblog/" class="nav-link">主页</a></div><div class="nav-item"><a href="/jblog/webframe/" class="nav-link router-link-active">前端</a></div><div class="nav-item"><a href="/jblog/publicClass/" class="nav-link">公开课</a></div><div class="nav-item"><a href="/jblog/adv/" class="nav-link">广告技巧</a></div><div class="nav-item"><a href="/jblog/company/" class="nav-link">x</a></div> <a href="https://github.com/chrisCy521/jblog" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav> <div class="my_introduce" style="padding-left:1rem;"><div class="introduce_component" data-v-9f1335ae><img src="/jblog/kobe.jpg" alt data-v-9f1335ae> <div class="intro_content" data-v-9f1335ae><h3 data-v-9f1335ae>jason的成长之路</h3></div></div></div> <ul class="sidebar-links"><li><a href="/jblog/webframe/" aria-current="page" class="sidebar-link">目录</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js的进阶</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js的面试题</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>js的设计模式</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/jblog/webframe/design/fabu.html" class="sidebar-link">发布订阅模式</a></li><li><a href="/jblog/webframe/design/single.html" aria-current="page" class="active sidebar-link">单例模式</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/jblog/webframe/design/single.html#单例模式的定义" class="sidebar-link">单例模式的定义</a></li><li class="sidebar-sub-header"><a href="/jblog/webframe/design/single.html#js中的全局变量" class="sidebar-link">js中的全局变量</a></li><li class="sidebar-sub-header"><a href="/jblog/webframe/design/single.html#单例模式登录浮窗实战" class="sidebar-link">单例模式登录浮窗实战</a></li><li class="sidebar-sub-header"><a href="/jblog/webframe/design/single.html#es6实现" class="sidebar-link">es6实现</a></li><li class="sidebar-sub-header"><a href="/jblog/webframe/design/single.html#es6-class-的login" class="sidebar-link">es6 class 的login</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js的案例</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>webpack</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>es6</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>面试策略</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>TypeScript</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="单例模式的定义"><a href="#单例模式的定义" class="header-anchor">#</a> 单例模式的定义</h2> <ul><li>单例模式的定义是：保证一个类仅有一个实例，并提供一个访问它的全局访问点。</li> <li>单例模式是一种常用的模式，有一些对象我们往往只需要一个，比如线程池、全局缓存、浏
+览器中的 window 对象等。在 JavaScript 开发中，单例模式的用途同样非常广泛。试想一下，当我 们单击登录按钮的时候，页面中会出现一个登录浮窗，而这个登录浮窗是唯一的，无论单击多少 次登录按钮，这个浮窗都只会被创建一次，那么这个登录浮窗就适合用单例模式来创建。</li></ul> <h2 id="js中的全局变量"><a href="#js中的全局变量" class="header-anchor">#</a> js中的全局变量</h2> <ul><li>全局变量不是单例模式，但在 JavaScript 开发中，我们经常会把全局变量当成单例来使用。</li></ul> <ol><li>如果 a 变量被声明在全局作用域下， 则我们可以在代码中的任何位置使用这个变量，全局变量提供给全局访问是理所当然的。这样就 满足了单例模式的两个条件。</li> <li>全局变量会很容易被覆盖存在问题</li> <li>Douglas Crockford 多次把全局变量称为 JavaScript 中最糟糕的特性。在对 JavaScript 的创造者 Brendan Eich 的访谈中， Brendan Eich 本人也承认全局变量是设计上的失误，是在没有足够的时间思考一些东西的情况下导致的结果。</li></ol> <ul><li>降低命名空间的污染</li></ul> <ol><li>使用命名空间
+适当地使用命名空间，并不会杜绝全局变量，但可以减少全局变量的数量。
+最简单的方法依然是用对象字面量的方式：</li></ol> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> namespace1 <span class="token operator">=</span> <span class="token punctuation">{</span> 
+<span class="token function-variable function">a</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+  <span class="token function">alert</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">,</span> 
+<span class="token function-variable function">b</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+  <span class="token function">alert</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre></div><ol start="2"><li>使用闭包封装私有变量
+这种方法把一些变量封装在闭包的内部，只暴露一些接口跟外界通信：</li></ol> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> user <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+  <span class="token keyword">var</span> __name <span class="token operator">=</span> <span class="token string">'sven'</span><span class="token punctuation">,</span> 
+  __age <span class="token operator">=</span> <span class="token number">29</span><span class="token punctuation">;</span> 
+  <span class="token keyword">return</span> <span class="token punctuation">{</span> 
+    <span class="token function-variable function">getUserInfo</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+      <span class="token keyword">return</span> __name <span class="token operator">+</span> <span class="token string">'-'</span> <span class="token operator">+</span> __age<span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
+  <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+</code></pre></div><p>我们用下划线来约定私有变量__name 和__age，它们被封装在闭包产生的作用域中，外部是访问不到这两个变量的，这就避免了对全局的命令污染。</p> <h2 id="单例模式登录浮窗实战"><a href="#单例模式登录浮窗实战" class="header-anchor">#</a> 单例模式登录浮窗实战</h2> <ul><li>第一种解决方案
+第一种解决方案是在页面加载完成的时候便创建好这个 div 浮窗，这个浮窗一开始肯定是隐 藏状态的，当用户点击登录按钮的时候，它才开始显示</li></ul> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">var</span> loginLayer <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span>
+      div<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'我是登录的浮窗'</span>
+      div<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span>
+      document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>div<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> div
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'login'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      loginLayer<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><ul><li>缺点
+也许我们进入 WebQQ 只是玩玩游戏或者看看天气，根本不需要进行 登录操作，因为登录浮窗总是一开始就被创建好，那么很有可能将白白浪费一些 DOM 节点。</li> <li>第二种解决方案</li></ul> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">var</span> creareLoginLayer <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> div
+      <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>div<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span>
+          div<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'我是登录的浮窗'</span>
+          div<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span>
+          document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>div<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> div
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'login'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> loginLayer <span class="token operator">=</span> <span class="token function">creareLoginLayer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      loginLayer<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><ul><li>缺点 违反单一职责原则的，创建对象和管理单例的逻辑都放在 createLoginLayer
+对象内部。如果我们下次需要创建页面中唯一的 iframe，或者 script 标签，用来跨域请求数据，就 必须得如法炮制，把 createLoginLayer 函数几乎照抄一遍：</li></ul> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">var</span> createIframe <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> iframe<span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>iframe<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          iframe <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'iframe'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          iframe<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span>
+          document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>iframe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> iframe<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><ul><li>第四种解决方案
+通用的单例模式
+我们需要把不变的部分隔离出来，先不考虑创建一个 div 和创建一个 iframe 有多少差异，管理单例的逻辑其实是完全可以抽象出来的，</li></ul> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token keyword">var</span> <span class="token function-variable function">getSingle</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> result<span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> result <span class="token operator">||</span> <span class="token punctuation">(</span>result <span class="token operator">=</span> <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">createLoginLayer</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span>
+      div<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'我是登录的浮窗'</span>
+      div<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span>
+      document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>div<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> div
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> createSingleLoginLayer <span class="token operator">=</span> <span class="token function">getSingle</span><span class="token punctuation">(</span>createLoginLayer<span class="token punctuation">)</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'login'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> loginLayer <span class="token operator">=</span> <span class="token function">createSingleLoginLayer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      loginLayer<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><h2 id="es6实现"><a href="#es6实现" class="header-anchor">#</a> es6实现</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">SingletonApple</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> creator<span class="token punctuation">,</span> products</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//首次使用构造器实例</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>SingletonApple<span class="token punctuation">.</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>creator <span class="token operator">=</span> creator<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>products <span class="token operator">=</span> products<span class="token punctuation">;</span>
+      <span class="token comment">//将this挂载到SingletonApple这个类的instance属性上</span>
+      SingletonApple<span class="token punctuation">.</span>instance <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> SingletonApple<span class="token punctuation">.</span>instance<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> appleCompany <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SingletonApple</span><span class="token punctuation">(</span><span class="token string">'苹果公司'</span><span class="token punctuation">,</span> <span class="token string">'乔布斯'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'iPhone'</span><span class="token punctuation">,</span> <span class="token string">'iMac'</span><span class="token punctuation">,</span> <span class="token string">'iPad'</span><span class="token punctuation">,</span> <span class="token string">'iPod'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> copyApple <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SingletonApple</span><span class="token punctuation">(</span><span class="token string">'苹果公司'</span><span class="token punctuation">,</span> <span class="token string">'阿辉'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'iPhone'</span><span class="token punctuation">,</span> <span class="token string">'iMac'</span><span class="token punctuation">,</span> <span class="token string">'iPad'</span><span class="token punctuation">,</span> <span class="token string">'iPod'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>appleCompany <span class="token operator">===</span> copyApple<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//true</span>
+</code></pre></div><ul><li>ES6的静态方法优化代码</li> <li>如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。</li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">SingletonApple</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> creator<span class="token punctuation">,</span> products</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>creator <span class="token operator">=</span> creator<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>products <span class="token operator">=</span> products<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">//静态方法</span>
+  <span class="token keyword">static</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> creator<span class="token punctuation">,</span> products</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SingletonApple</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> creator<span class="token punctuation">,</span> products<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>instance<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> appleCompany <span class="token operator">=</span> SingletonApple<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">'苹果公司'</span><span class="token punctuation">,</span> <span class="token string">'乔布斯'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'iPhone'</span><span class="token punctuation">,</span> <span class="token string">'iMac'</span><span class="token punctuation">,</span> <span class="token string">'iPad'</span><span class="token punctuation">,</span> <span class="token string">'iPod'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> copyApple <span class="token operator">=</span> SingletonApple<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">'苹果公司'</span><span class="token punctuation">,</span> <span class="token string">'阿辉'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'iPhone'</span><span class="token punctuation">,</span> <span class="token string">'iMac'</span><span class="token punctuation">,</span> <span class="token string">'iPad'</span><span class="token punctuation">,</span> <span class="token string">'iPod'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>appleCompany <span class="token operator">===</span> copyApple<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
+</code></pre></div><h2 id="es6-class-的login"><a href="#es6-class-的login" class="header-anchor">#</a> es6 class 的login</h2> <div class="language-html extra-class"><pre class="language-html"><code><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>en<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  
+  <span class="token comment">&lt;!--  Meta  --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UTF-8<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>My New Pen!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  
+  <span class="token comment">&lt;!--  Styles  --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>styles/index.css<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>top-bar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>top-bar_left<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      LTH BLOG
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>top-bar_right<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>login-btn<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>登陆<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>signin-btn<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>注册<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">&gt;</span></span>
+  
+  <span class="token comment">&lt;!-- Scripts --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>scripts/index.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-css extra-class"><pre class="language-css"><code><span class="token comment">/**
+ * index.scss
+ * - Add any styles you want here!
+ */</span>
+
+<span class="token selector">body</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #f5f5f5<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">*</span> <span class="token punctuation">{</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.top-bar</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> space-between<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 40px<span class="token punctuation">;</span>
+  <span class="token property">line-height</span><span class="token punctuation">:</span> 40px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> black<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+
+<span class="token selector">.top-bar_left</span> <span class="token punctuation">{</span>
+  <span class="token property">padding-left</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 22px<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.top-bar_right</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+  <span class="token property">padding-right</span><span class="token punctuation">:</span> 40px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.top-bar_right div</span> <span class="token punctuation">{</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.top-bar_right div:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #ccc<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.login-btn</span> <span class="token punctuation">{</span>
+  <span class="token property">margin-right</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mask-layer</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+  <span class="token property">padding-top</span><span class="token punctuation">:</span> 8%<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0.3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.login-wrapper</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 400px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+  <span class="token property">padding-left</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ccc<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.login-title</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> space-between<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 10px 10px 0 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.close-btn</span> <span class="token punctuation">{</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.user-input</span> <span class="token punctuation">{</span>
+  <span class="token property">margin-top</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.login-text</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 60px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.btn-wrapper</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">margin-top</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.btn-wrapper button</span> <span class="token punctuation">{</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 0 8px<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.clear-btn</span> <span class="token punctuation">{</span>
+  <span class="token property">margin-left</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/**
+ * index.js
+ * - All our useful JS goes here, awesome!
+ */</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Login</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">//构造器</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">//初始化方法</span>
+  <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//新建div</span>
+    <span class="token keyword">let</span> mask <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//添加样式</span>
+    mask<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'mask-layer'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//添加模板字符串</span>
+    mask<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> 
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    &lt;div class=&quot;login-wrapper&quot;&gt;
+      &lt;div class=&quot;login-title&quot;&gt;
+        &lt;div class=&quot;title-text&quot;&gt;登录框&lt;/div&gt;
+        &lt;div class=&quot;close-btn&quot;&gt;×&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;username-input user-input&quot;&gt;
+        &lt;span class=&quot;login-text&quot;&gt;用户名:&lt;/span&gt;
+        &lt;input type=&quot;text&quot;&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;pwd-input user-input&quot;&gt;
+        &lt;span class=&quot;login-text&quot;&gt;密码:&lt;/span&gt;
+        &lt;input type=&quot;password&quot;&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;btn-wrapper&quot;&gt;
+        &lt;button class=&quot;confrim-btn&quot;&gt;确定&lt;/button&gt;
+        &lt;button class=&quot;clear-btn&quot;&gt;清空&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token comment">//插入元素</span>
+    document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>mask<span class="token punctuation">,</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//添加关闭登录框事件</span>
+    Login<span class="token punctuation">.</span><span class="token function">addCloseLoginEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">//静态方法: 获取元素</span>
+  <span class="token keyword">static</span> <span class="token function">getLoginDom</span><span class="token punctuation">(</span><span class="token parameter">cls</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span>  document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span>cls<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">//静态方法: 添加关闭登录框事件</span>
+  <span class="token keyword">static</span> <span class="token function">addCloseLoginEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getLoginDom</span><span class="token punctuation">(</span><span class="token string">'.close-btn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">//给遮罩层添加style, 用于隐藏遮罩层</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getLoginDom</span><span class="token punctuation">(</span><span class="token string">'.mask-layer'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style <span class="token operator">=</span> <span class="token string">&quot;display: none&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">//静态方法: 获取实例(单例)</span>
+  <span class="token keyword">static</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">//移除遮罩层style, 用于显示遮罩层</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getLoginDom</span><span class="token punctuation">(</span><span class="token string">'.mask-layer'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span><span class="token string">'style'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>instance<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//添加事件</span>
+Login<span class="token punctuation">.</span><span class="token function">getLoginDom</span><span class="token punctuation">(</span><span class="token string">'.login-btn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  Login<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/jblog/webframe/design/fabu.html" class="prev">发布订阅模式</a></span> <span class="next"><a href="/jblog/webframe/anli/bird.html">小鸟碰撞游戏</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/jblog/assets/js/app.939b6301.js" defer></script><script src="/jblog/assets/js/2.69116606.js" defer></script><script src="/jblog/assets/js/29.fc61ae81.js" defer></script>
+  </body>
+</html>

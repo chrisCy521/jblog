@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>小鸟的碰撞游戏 | jason的博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link rel="shortcut icon" href="/jblog/favicon.ico" type="iamge/x-icon">
+    <meta name="description" content="记录前端的点滴">
+    <meta name="keywords" content="自强不息">
+    <link rel="preload" href="/jblog/assets/css/0.styles.4827cb9a.css" as="style"><link rel="preload" href="/jblog/assets/js/app.939b6301.js" as="script"><link rel="preload" href="/jblog/assets/js/2.69116606.js" as="script"><link rel="preload" href="/jblog/assets/js/23.7b7bfba7.js" as="script"><link rel="prefetch" href="/jblog/assets/js/10.3f5ea1a5.js"><link rel="prefetch" href="/jblog/assets/js/11.09868c95.js"><link rel="prefetch" href="/jblog/assets/js/12.5876c8c3.js"><link rel="prefetch" href="/jblog/assets/js/13.70c12460.js"><link rel="prefetch" href="/jblog/assets/js/14.38eaa25e.js"><link rel="prefetch" href="/jblog/assets/js/15.a258f64c.js"><link rel="prefetch" href="/jblog/assets/js/16.d3b6d5b2.js"><link rel="prefetch" href="/jblog/assets/js/17.214d98f4.js"><link rel="prefetch" href="/jblog/assets/js/18.4432f15d.js"><link rel="prefetch" href="/jblog/assets/js/19.009c42d1.js"><link rel="prefetch" href="/jblog/assets/js/20.505677be.js"><link rel="prefetch" href="/jblog/assets/js/21.dc8ee34a.js"><link rel="prefetch" href="/jblog/assets/js/22.24be2b92.js"><link rel="prefetch" href="/jblog/assets/js/24.291439ff.js"><link rel="prefetch" href="/jblog/assets/js/25.0290b8a6.js"><link rel="prefetch" href="/jblog/assets/js/26.7cdf10c5.js"><link rel="prefetch" href="/jblog/assets/js/27.445ed46d.js"><link rel="prefetch" href="/jblog/assets/js/28.fc9a9daa.js"><link rel="prefetch" href="/jblog/assets/js/29.fc61ae81.js"><link rel="prefetch" href="/jblog/assets/js/3.e2872c24.js"><link rel="prefetch" href="/jblog/assets/js/30.8ad3d737.js"><link rel="prefetch" href="/jblog/assets/js/31.7991df49.js"><link rel="prefetch" href="/jblog/assets/js/32.d679adb5.js"><link rel="prefetch" href="/jblog/assets/js/33.3666d709.js"><link rel="prefetch" href="/jblog/assets/js/34.3fcac35d.js"><link rel="prefetch" href="/jblog/assets/js/35.1a9fb7e3.js"><link rel="prefetch" href="/jblog/assets/js/36.ab850b55.js"><link rel="prefetch" href="/jblog/assets/js/37.b78e16ac.js"><link rel="prefetch" href="/jblog/assets/js/38.eec7df57.js"><link rel="prefetch" href="/jblog/assets/js/39.601d738a.js"><link rel="prefetch" href="/jblog/assets/js/4.17c414fe.js"><link rel="prefetch" href="/jblog/assets/js/40.15e2e330.js"><link rel="prefetch" href="/jblog/assets/js/41.f2985f23.js"><link rel="prefetch" href="/jblog/assets/js/42.bc076e96.js"><link rel="prefetch" href="/jblog/assets/js/43.dd0d1756.js"><link rel="prefetch" href="/jblog/assets/js/44.b7340480.js"><link rel="prefetch" href="/jblog/assets/js/45.04939410.js"><link rel="prefetch" href="/jblog/assets/js/46.11d1f0cf.js"><link rel="prefetch" href="/jblog/assets/js/47.43f1c539.js"><link rel="prefetch" href="/jblog/assets/js/48.2b3a1224.js"><link rel="prefetch" href="/jblog/assets/js/49.c4a6f617.js"><link rel="prefetch" href="/jblog/assets/js/5.c9e8a6e8.js"><link rel="prefetch" href="/jblog/assets/js/50.40173b30.js"><link rel="prefetch" href="/jblog/assets/js/51.0a5b5a95.js"><link rel="prefetch" href="/jblog/assets/js/52.db4eab73.js"><link rel="prefetch" href="/jblog/assets/js/53.c5fa1fb8.js"><link rel="prefetch" href="/jblog/assets/js/54.3585270e.js"><link rel="prefetch" href="/jblog/assets/js/55.90653a0d.js"><link rel="prefetch" href="/jblog/assets/js/56.3dee1469.js"><link rel="prefetch" href="/jblog/assets/js/57.76e8faae.js"><link rel="prefetch" href="/jblog/assets/js/58.ba0fe16f.js"><link rel="prefetch" href="/jblog/assets/js/59.d52f2979.js"><link rel="prefetch" href="/jblog/assets/js/6.0eccc16f.js"><link rel="prefetch" href="/jblog/assets/js/60.323a300e.js"><link rel="prefetch" href="/jblog/assets/js/61.8b53b7c9.js"><link rel="prefetch" href="/jblog/assets/js/62.44f3e031.js"><link rel="prefetch" href="/jblog/assets/js/63.d6ccfebf.js"><link rel="prefetch" href="/jblog/assets/js/7.3e672cdc.js"><link rel="prefetch" href="/jblog/assets/js/8.27e2092a.js"><link rel="prefetch" href="/jblog/assets/js/9.9a99da76.js">
+    <link rel="stylesheet" href="/jblog/assets/css/0.styles.4827cb9a.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/jblog/" class="home-link router-link-active"><!----> <span class="site-name">jason的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/jblog/" class="nav-link">主页</a></div><div class="nav-item"><a href="/jblog/webframe/" class="nav-link router-link-active">前端</a></div><div class="nav-item"><a href="/jblog/publicClass/" class="nav-link">公开课</a></div><div class="nav-item"><a href="/jblog/adv/" class="nav-link">广告技巧</a></div><div class="nav-item"><a href="/jblog/company/" class="nav-link">x</a></div> <a href="https://github.com/chrisCy521/jblog" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/jblog/" class="nav-link">主页</a></div><div class="nav-item"><a href="/jblog/webframe/" class="nav-link router-link-active">前端</a></div><div class="nav-item"><a href="/jblog/publicClass/" class="nav-link">公开课</a></div><div class="nav-item"><a href="/jblog/adv/" class="nav-link">广告技巧</a></div><div class="nav-item"><a href="/jblog/company/" class="nav-link">x</a></div> <a href="https://github.com/chrisCy521/jblog" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav> <div class="my_introduce" style="padding-left:1rem;"><div class="introduce_component" data-v-9f1335ae><img src="/jblog/kobe.jpg" alt data-v-9f1335ae> <div class="intro_content" data-v-9f1335ae><h3 data-v-9f1335ae>jason的成长之路</h3></div></div></div> <ul class="sidebar-links"><li><a href="/jblog/webframe/" aria-current="page" class="sidebar-link">目录</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js的进阶</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js的面试题</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js的设计模式</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>js的案例</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/jblog/webframe/anli/bird.html" aria-current="page" class="active sidebar-link">小鸟碰撞游戏</a></li><li><a href="/jblog/webframe/anli/snake.html" class="sidebar-link">贪吃蛇</a></li><li><a href="/jblog/webframe/anli/jindu.html" class="sidebar-link">进度条</a></li><li><a href="/jblog/webframe/anli/yanzhengma.html" class="sidebar-link">验证码</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>webpack</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>es6</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>面试策略</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>TypeScript</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="小鸟的碰撞游戏"><a href="#小鸟的碰撞游戏" class="header-anchor">#</a> 小鸟的碰撞游戏</h1> <div class="language-js extra-class"><pre class="language-js"><code> <span class="token comment">// 获取开始的按钮</span>
+  <span class="token keyword">var</span> startBtn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#start'</span><span class="token punctuation">)</span>
+  <span class="token comment">// 获取到header</span>
+  <span class="token keyword">var</span> head <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">&quot;#head&quot;</span><span class="token punctuation">)</span>
+  <span class="token comment">// 获取到bird</span>
+  <span class="token keyword">var</span> bird <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">&quot;#bird&quot;</span><span class="token punctuation">)</span>
+  <span class="token comment">// 获取到音频</span>
+  <span class="token keyword">var</span> audio <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">&quot;audio&quot;</span><span class="token punctuation">)</span>
+  <span class="token comment">// 获取到存放管道的div</span>
+  <span class="token keyword">var</span> ductWrap <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">&quot;#ductWrap&quot;</span><span class="token punctuation">)</span>
+  <span class="token comment">// 获取存放分数的div</span>
+  <span class="token keyword">var</span> score <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">&quot;#scoring&quot;</span><span class="token punctuation">)</span>
+  <span class="token comment">// 创建管道的定时器</span>
+  <span class="token keyword">var</span> createDuctTimer <span class="token operator">=</span> <span class="token keyword">null</span>
+  <span class="token comment">// 是否删除管道定时器</span>
+  <span class="token keyword">var</span> isDelTimer <span class="token operator">=</span> <span class="token boolean">false</span>
+  startBtn<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 隐藏开始按钮 和 head</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span>
+    head<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span>
+    <span class="token comment">// 显示小鸟</span>
+    bird<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span>
+    <span class="token comment">// 定义小鸟的移动速度</span>
+    bird<span class="token punctuation">.</span>speed <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token comment">// 小鸟的移动</span>
+    bird<span class="token punctuation">.</span>moveTimer <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 小鸟的速度增加</span>
+      bird<span class="token punctuation">.</span>speed <span class="token operator">+=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+      <span class="token comment">// 为了不让小鸟一直向上飞出去 作以下判断</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>bird<span class="token punctuation">.</span>offsetTop <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        bird<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token string">&quot;0px&quot;</span>
+        <span class="token comment">// 这个394 是总高度减去下面地面的高度</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>bird<span class="token punctuation">.</span>offsetTop <span class="token operator">&gt;=</span> <span class="token number">394</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        bird<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token string">&quot;394px&quot;</span><span class="token punctuation">;</span>
+        <span class="token function">clearInterval</span><span class="token punctuation">(</span>bird<span class="token punctuation">.</span>moveTimer<span class="token punctuation">)</span>
+        audio<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">&quot;./game_over.mp3&quot;</span><span class="token punctuation">;</span>
+        <span class="token comment">// 最后写</span>
+        document<span class="token punctuation">.</span><span class="token function-variable function">onmousedown</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 阻止默认事件</span>
+          <span class="token keyword">var</span> ev <span class="token operator">=</span> e <span class="token operator">||</span> window<span class="token punctuation">.</span>event<span class="token punctuation">;</span>
+          ev<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token comment">// 当小鸟落地死亡时</span>
+        <span class="token comment">// 1:清除创建管道的定时器</span>
+        <span class="token function">clearInterval</span><span class="token punctuation">(</span>createDuctTimer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 2:清除管道移动的定时器</span>
+        isDelTimer <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>bird<span class="token punctuation">.</span>speed <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        bird<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">&quot;img/up_bird0.png&quot;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        bird<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">&quot;img/down_bird0.png&quot;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      bird<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> bird<span class="token punctuation">.</span>offsetTop <span class="token operator">+</span> bird<span class="token punctuation">.</span>speed <span class="token operator">+</span> <span class="token string">&quot;px&quot;</span><span class="token punctuation">;</span>
+      <span class="token comment">// 碰撞检测(最后加上)</span>
+      <span class="token keyword">var</span> ductRow <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">&quot;.duct_row&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ductRow<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> isCrash <span class="token operator">=</span> <span class="token function">crashFn</span><span class="token punctuation">(</span>bird<span class="token punctuation">,</span> ductRow<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isCrash <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 更换音乐</span>
+          audio<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">&quot;game_over.mp3&quot;</span><span class="token punctuation">;</span>
+          <span class="token comment">// 清除小鸟移动</span>
+          <span class="token function">clearInterval</span><span class="token punctuation">(</span>bird<span class="token punctuation">.</span>moveTimer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment">// 清除创建管道定时器</span>
+          <span class="token function">clearInterval</span><span class="token punctuation">(</span>createDuctTimer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment">// 清除管道移动</span>
+          isDelTimer <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+          bird<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">&quot;die&quot;</span><span class="token punctuation">;</span>
+          document<span class="token punctuation">.</span><span class="token function-variable function">onmousedown</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> ev <span class="token operator">=</span> e <span class="token operator">||</span> window<span class="token punctuation">.</span>event<span class="token punctuation">;</span>
+            ev<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span>
+    <span class="token comment">// 小鸟向上移动</span>
+    document<span class="token punctuation">.</span><span class="token function-variable function">onmousedown</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 阻止默认事件</span>
+      <span class="token keyword">var</span> ev <span class="token operator">=</span> e <span class="token operator">||</span> window<span class="token punctuation">.</span>event<span class="token punctuation">;</span>
+      ev<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      bird<span class="token punctuation">.</span>speed <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">;</span>
+      audio<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">&quot;game_music.mp3&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 创建管道</span>
+    createDuctTimer <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> duct <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">&quot;li&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 上管道的随机高度</span>
+      <span class="token keyword">var</span> upHeight <span class="token operator">=</span> <span class="token function">randFn</span><span class="token punctuation">(</span><span class="token number">61</span><span class="token punctuation">,</span> <span class="token number">261</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 下管道的高度 这里的423 是li的总高度</span>
+      <span class="token keyword">var</span> downHeight <span class="token operator">=</span> <span class="token number">423</span> <span class="token operator">-</span> upHeight <span class="token operator">-</span> <span class="token number">100</span><span class="token punctuation">;</span>
+      duct<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'&lt;div class=&quot;duct_up duct_row&quot; style=&quot;height:'</span> 
+      <span class="token operator">+</span> upHeight <span class="token operator">+</span> <span class="token string">'px&quot;&gt;&lt;img src=&quot;img/up_pipe.png&quot;&gt;&lt;/div&gt;'</span>
+      <span class="token operator">+</span> <span class="token string">'&lt;div class=&quot;duct_down duct_row&quot; style=&quot;height: '</span> 
+      <span class="token operator">+</span> downHeight <span class="token operator">+</span> <span class="token string">'px&quot;&gt;&lt;img src=&quot;img/down_pipe.png&quot;&gt;&lt;/div&gt;'</span><span class="token punctuation">;</span>
+      <span class="token comment">// 管道第一次出现的位置</span>
+      duct<span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token number">350</span>
+      <span class="token comment">// 给管道增加是否加分的标识</span>
+      duct<span class="token punctuation">.</span>scoreBol <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token comment">// 管道移动</span>
+      duct<span class="token punctuation">.</span>moveTimer <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        duct<span class="token punctuation">.</span>l <span class="token operator">-=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+        duct<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> duct<span class="token punctuation">.</span>l <span class="token operator">+</span> <span class="token string">'px'</span>
+        <span class="token comment">// 这里之所以用到62 是因为每个管道的宽度是62</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>duct<span class="token punctuation">.</span>l <span class="token operator">&lt;=</span> <span class="token operator">-</span><span class="token number">62</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// 清除管道</span>
+          ductWrap<span class="token punctuation">.</span><span class="token function">removeChild</span><span class="token punctuation">(</span>duct<span class="token punctuation">)</span>
+          <span class="token function">clearInterval</span><span class="token punctuation">(</span>duct<span class="token punctuation">.</span>moveTimer<span class="token punctuation">)</span>
+          <span class="token comment">// 当管道小于-31的时候</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>duct<span class="token punctuation">.</span>l <span class="token operator">&lt;=</span> <span class="token operator">-</span><span class="token number">31</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>duct<span class="token punctuation">.</span>scoreBol <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            score<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>score<span class="token punctuation">.</span>innerHTML<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">10</span>
+          <span class="token punctuation">}</span>
+          <span class="token comment">// 这里变成false 不然的话会一直加分 </span>
+          duct<span class="token punctuation">.</span>scoreBol <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 小鸟死亡 定时器清除</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isDelTimer <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token function">clearInterval</span><span class="token punctuation">(</span>duct<span class="token punctuation">.</span>moveTimer<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span>
+      <span class="token comment">// 把管道插入到ductWrap</span>
+      ductWrap<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>duct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+
+
+
+  <span class="token comment">// 随机函数</span>
+  <span class="token keyword">function</span> <span class="token function">randFn</span><span class="token punctuation">(</span><span class="token parameter">min<span class="token punctuation">,</span> max</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 61 261</span>
+    <span class="token keyword">return</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>max <span class="token operator">-</span> min<span class="token punctuation">)</span> <span class="token operator">+</span> min<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token comment">//碰撞检测</span>
+  <span class="token keyword">function</span> <span class="token function">crashFn</span><span class="token punctuation">(</span><span class="token parameter">obj1<span class="token punctuation">,</span> obj2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">var</span> obj1Left <span class="token operator">=</span> obj1<span class="token punctuation">.</span>offsetLeft<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> obj1Right <span class="token operator">=</span> obj1Left <span class="token operator">+</span> obj1<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> obj1Top <span class="token operator">=</span> obj1<span class="token punctuation">.</span>offsetTop<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> obj1Bottom <span class="token operator">=</span> obj1Top <span class="token operator">+</span> obj1<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> obj2Left <span class="token operator">=</span> obj2<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span>offsetLeft<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> obj2Right <span class="token operator">=</span> obj2Left <span class="token operator">+</span> obj2<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> obj2Top <span class="token operator">=</span> obj2<span class="token punctuation">.</span>offsetTop<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> obj2Bottom <span class="token operator">=</span> obj2Top <span class="token operator">+</span> obj2<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">;</span>
+    <span class="token comment">// 1:obj1的右边 大于等于 obj2的左边</span>
+    <span class="token comment">// 2:obj1的下边 大于等于 obj2的上边</span>
+    <span class="token comment">// 3:obj1的左边 小于等于 obj2的右边</span>
+    <span class="token comment">// 4:obj1的上边 小于等于 obj2的下边</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>obj1Right <span class="token operator">&gt;=</span> obj2Left <span class="token operator">&amp;&amp;</span> obj1Bottom <span class="token operator">&gt;=</span> obj2Top <span class="token operator">&amp;&amp;</span> obj1Left <span class="token operator">&lt;=</span> obj2Right <span class="token operator">&amp;&amp;</span> obj1Top <span class="token operator">&lt;=</span> obj2Bottom<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 已经发生碰撞</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 没有碰撞</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/jblog/webframe/design/single.html" class="prev">单例模式</a></span> <span class="next"><a href="/jblog/webframe/anli/snake.html">贪吃蛇</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/jblog/assets/js/app.939b6301.js" defer></script><script src="/jblog/assets/js/2.69116606.js" defer></script><script src="/jblog/assets/js/23.7b7bfba7.js" defer></script>
+  </body>
+</html>
